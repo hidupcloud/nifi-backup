@@ -1,0 +1,12 @@
+version: "3"
+services:
+  nifi-backup:
+    image: hidup/nifi-backup:1.7.0
+    volumes:
+      - ./opt/nifi-backup:/opt/nifi-backup
+      - ../nifi/opt/nifi/:/opt/nifi
+    environment:
+      CRON_STRINGS: "* * * * *"
+      TZ: "Europe/Madrid"
+      NIFI_HOME: "/opt/nifi"
+      RETENTION: "1"
