@@ -9,11 +9,4 @@ rm -rf /var/spool/cron/crontabs && mkdir -m 0644 -p /var/spool/cron/crontabs
 
 chmod -R 0644 /var/spool/cron/crontabs
 
-#if [ ! -z "$CRON_TAIL" ]
-#then
-	# crond running in background and log file reading every second by tail to STDOUT
-	crond -s /var/spool/cron/crontabs -b -L /var/log/cron/cron.log "$@" && tail -f /var/log/cron/cron.log
-#else
-	# crond running in foreground. log files can be retrive from /var/log/cron mount point
-#	crond -s /var/spool/cron/crontabs -f -L /var/log/cron/cron.log "$@"
-#fi
+crond -s /var/spool/cron/crontabs -b -L /var/log/cron/cron.log "$@" && tail -f /var/log/cron/cron.log
